@@ -1,0 +1,9 @@
+{
+    "City.3c244264-e1a5-45ee-adf3-5b6c6271a104": {"id": "3c244264-e1a5-45ee-adf3-5b6c6271a104", "created_at": "2024-02-09T12:54:32.866885", "updated_at": "2024-02-09T12:54:32.867063", "name": "Banjul", "__class__": "City", "state_id": "8e7ea7a3-42d5-41d0-9a43-4fa53a069498"},
+    
+    "Place.ffc91f88-64c9-453d-b955-9839c98cdd9e": {"id": "ffc91f88-64c9-453d-b955-9839c98cdd9e", "created_at": "2024-02-09T16:53:30.123363", "updated_at": "2024-02-09T16:53:30.123643", "name": "Best Place", "__class__": "Place", "city_id": "3c244264-e1a5-45ee-adf3-5b6c6271a104", "amenity_ids": ["aaca26f1-9984-46dd-b900-e6a70b488f7c"]},
+    
+    "Amenity.aaca26f1-9984-46dd-b900-e6a70b488f7c": {"id": "aaca26f1-9984-46dd-b900-e6a70b488f7c", "created_at": "2024-02-09T16:53:41.587949", "updated_at": "2024-02-09T16:53:41.587994", "__class__": "Amenity"},
+    
+    "State.8e7ea7a3-42d5-41d0-9a43-4fa53a069498": {"id": "8e7ea7a3-42d5-41d0-9a43-4fa53a069498", "created_at": "2024-02-09T17:24:37.512369", "updated_at": "2024-02-09T17:24:37.512661", "__class__": "State"}
+}
