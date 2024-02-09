@@ -1,5 +1,6 @@
 $(function() {
     const amenities = {};
+    const amenities_list = [];
     $("input[type=checkbox]").on("change", function () {
         if ($(this).is(":checked")) {
             amenities[$(this).data('id')] = $(this).data('name');
@@ -7,12 +8,15 @@ $(function() {
         else {
             delete amenities[$(this).data('id')];
         }
+
+        $(".amenities h4").text(amenities_list.join(","));
+
         amenities_text = "";
         for (const amenity of Object.values(amenities)) {
-            if (text == "") {
-                text += amenity;
+            if (amenities_text == "") {
+                amenities_text += amenity;
             } else {
-                text += ", " + amenity;
+                amenities_text += ", " + amenity;
             }
         }
         $(".amenities h4").text(amenities_text);
