@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     const amenities = {};
     $("input[type=checkbox]").on("change", function () {
 
@@ -10,7 +10,7 @@ $(function() {
             delete amenities[$(this).data('id')];
         }
 
-        
+
 
         amenities_text = "";
         for (const amenity of Object.values(amenities)) {
@@ -30,30 +30,41 @@ $(function() {
         else {
             $("#api_status").removeClass("available");
         }
-      });
-      function get_places (filter_object) {
-        $.post('http://0.0.0.0:5001/api/v1/places_search', filter_object, function (response) {
-        let places_articles = "";
-        for (const place of response) {
-            const added_place = `<article>
-            <div class="title_box">
-              <h2>${place.name}</h2>
-              <div class="price_by_night">${place.price_by_night}</div>
-            </div>
-            <div class="information">
-              <div class="max_guest">${place.max_guest} Guest${place.max_guest != 1 ? 's' : ''}</div>
-                  <div class="number_rooms">${place.number_rooms} Bedroom${place.number_rooms != 1 ? 's' : ''}</div>
-                  <div class="number_bathrooms">${place.number_bathrooms} Bathroom${place.number_bathrooms != 1 ? 's' : ''}</div>
-            </div>
-            <div class="description">
-              ${ place.description}
-            </div>
-          </article>`
-          places_articles += added_place;
-        }
-        $('section.places').html(places_articles);
-    }, 'json');
-      };
+    });
+    function get_places(filter_object) {
+        $.ajax({
+            type: "POST",
+            url: 'http://0.0.0.0:5001/api/v1/places_search',
+            data: JSON.stringify(filter_object),
+            contentType: "application/json",
+            dataType: "json",
+
+            success: (response) => {
+                console.log(response)
+                let places_articles = "";
+                for (const place of response) {
+                    const added_place = `<article>
+                    <div class="title_box">
+                    <h2>${place.name}</h2>
+                    <div class="price_by_night">${place.price_by_night}</div>
+                    </div>
+                    <div class="information">
+                    <div class="max_guest">${place.max_guest} Guest${place.max_guest != 1 ? 's' : ''}</div>
+                        <div class="number_rooms">${place.number_rooms} Bedroom${place.number_rooms != 1 ? 's' : ''}</div>
+                        <div class="number_bathrooms">${place.number_bathrooms} Bathroom${place.number_bathrooms != 1 ? 's' : ''}</div>
+                    </div>
+                    <div class="description">
+                    ${place.description}
+                    </div>
+                    </article>`
+                    places_articles += added_place;
+                }
+                $('section.places').html(places_articles);
+            }
+        });
+    }
     get_places({})
-    $('button').on('click', get_places({amenities: Object.keys(amenities)}));
+    $('button').on('click', function() {
+        get_places({ amenities: Object.keys(amenities) });
+    });
 });
