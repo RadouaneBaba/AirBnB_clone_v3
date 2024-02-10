@@ -8,8 +8,6 @@ $(function() {
             delete amenities[$(this).data('id')];
         }
 
-        $(".amenities h4").text(amenities_list.join(","));
-
         amenities_text = "";
         for (const amenity of Object.values(amenities)) {
             if (amenities_text == "") {
